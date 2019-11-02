@@ -13,7 +13,11 @@ app.use(express.json());
 
 const usersRouter = require('./Routes/usersRouter.js')
 
+const postsRouter = require('./Routes/postsRouter.js')
+
 app.use('/users', usersRouter)
+
+app.use('/posts', postsRouter)
 
 app.use('/', (req, res) => {
     res.send('Welcome to Facebook')
