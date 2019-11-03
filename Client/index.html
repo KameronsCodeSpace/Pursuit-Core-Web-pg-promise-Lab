@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="index.js"></script>
-    <title>Document</title>
+    <title>Facebook Database</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,7 @@
         <p>Age: <input type="number", id='ageInput'></p>
         <button>Submit</button>
     </form>
-    
+
     <h2>Add New Post</h2>
     <form id="addPostForm">
         <p>Poster ID: <input type="text" id='poster-id'></p>
@@ -31,10 +31,10 @@
         <button>Display Post Likes</button>
     </form>
 
-    <h2>Display User Post Likes</h2>
+    <!-- <h2>Display User Post Likes</h2>
     <form id="displayUserPostLikes">
         <button>Display Post Likes</button>
-    </form>
+    </form> -->
 
     <h2>Single User</h2>
     <ul id="userPostList">
@@ -48,8 +48,12 @@
     <ul id="postsList">
     </ul>
 
-    <h2>All posts likes</h2>
+    <h2>All post likes</h2>
     <ul id="postLikes">
+    </ul>
+
+    <h2>Users who liked posts</h2>
+    <ul id="userLikedPosts">
     </ul>
     
 </body>

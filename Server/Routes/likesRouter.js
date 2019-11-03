@@ -34,4 +34,35 @@ router.get('/', async(req, res) => {
         }
     })
 
+    router.get('/userLikes', async(req, res) => {
+        try{
+            let userLikes = await 
+            db.any(`
+            SELECT 
+                posts.body AS User_Post, ARRAY_AGG (users.firstname || ' ' || users.lastname) Users_Who_Liked
+            FROM 
+                posts, likes
+            INNER JOIN users ON users.id = likes.liker_id
+            WHERE 
+                posts.id = likes.post_id
+
+            GROUP BY 
+                User_Post
+
+            ORDER BY 
+                Users_Who_Liked DESC; 
+                `)
+            res.json({
+                payload: userLikes,
+                message: "All likes printed"
+            });
+        } catch(error) {
+            res.status(500)
+            res.json({
+                message: "Error. Something went wrong!"
+            })
+            console.log(error)
+            }
+        })
+
 module.exports = router;

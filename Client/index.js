@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadUsers();
     loadPosts();
     loadPostLikes();
+    userLikedPosts();
 
     const userForm = document.querySelector('#addUserForm');
     const postForm = document.querySelector('#addPostForm');
@@ -37,6 +38,19 @@ async function loadPosts() {
     });
 }
 
+//Display users who have liked each post
+async function userLikedPosts() {
+    const userLikedPosts = document.querySelector('#userLikedPosts');
+    userLikedPosts.innerHTML = "";
+    const response = await axios.get(`http://localhost:3000/likes/userLikes`);
+    response.data.payload.forEach((post) => {
+        let listItem = document.createElement("li");
+        listItem.innerText = `Post: ${post.user_post} -- Users: ${post.users_who_liked} `;
+        userLikedPosts.appendChild(listItem);
+    });
+}
+
+//Display the number of likes of each post
 async function loadPostLikes() {
     const postLikes = document.querySelector('#postLikes');
     postLikes.innerHTML = "";
