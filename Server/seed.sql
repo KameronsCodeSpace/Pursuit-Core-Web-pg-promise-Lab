@@ -17,6 +17,12 @@ CREATE TABLE Posts(
     body VARCHAR
 );
 
+CREATE TABLE Likes(
+    id SERIAL PRIMARY KEY,
+    liker_id INT REFERENCES Users (id),
+    post_id INT REFERENCES Posts (id)
+)
+
 -- Add some users
 INSERT INTO users(firstname, lastname, age)
     VALUES('Adam', 'Addams', 40),
