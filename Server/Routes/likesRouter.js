@@ -65,4 +65,33 @@ router.get('/', async(req, res) => {
             }
         })
 
+        router.get('/filteredLikes/:amount', async(req, res) => {
+            try{
+                let userLikes = await 
+                db.any(`
+                SELECT 
+                    posts.body AS User_Post, COUNT(post_id)
+                FROM 
+                    posts
+                JOIN 
+                    likes ON posts.id = likes.post_id
+                GROUP BY 
+                    posts.id
+                HAVING COUNT(post_id) > ${req.params.amount}
+                ORDER BY 
+                    User_Post DESC
+                    `)
+                res.json({
+                    payload: userLikes,
+                    message: "All likes printed"
+                });
+            } catch(error) {
+                res.status(500)
+                res.json({
+                    message: "Error. Something went wrong!"
+                })
+                console.log(error)
+                }
+            })
+
 module.exports = router;
