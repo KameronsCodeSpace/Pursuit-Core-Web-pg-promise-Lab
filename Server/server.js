@@ -15,9 +15,13 @@ const usersRouter = require('./Routes/usersRouter.js')
 
 const postsRouter = require('./Routes/postsRouter.js')
 
+const likesRouter = require('./Routes/likesRouter.js')
+
 app.use('/users', usersRouter)
 
 app.use('/posts', postsRouter)
+
+app.use('/likes', likesRouter)
 
 app.use('/', (req, res) => {
     res.send('Welcome to Facebook')

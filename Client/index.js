@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadUsers();
     loadPosts();
+    // loadPostLikes();
 
     const userForm = document.querySelector('#addUserForm');
     const postForm = document.querySelector('#addPostForm');
     const userPostsForm = document.querySelector('#displayUserPosts');
+    const userPostLikesForm = document.querySelector('#displayUserPostLikes');
 
     userForm.addEventListener('submit', addUserFormSubmitted);
     postForm.addEventListener('submit', addPostFormSubmitted);
     userPostsForm.addEventListener('submit', loadUserPosts);
+    userPostLikesForm.addEventListener('submit', loadUserPostLikes);
 
 });
 
@@ -31,6 +34,17 @@ async function loadPosts() {
         let listItem = document.createElement("li");
         listItem.innerText = `User ID: ${post.poster_id}, Post: ${post.body}`;
         postsList.appendChild(listItem);
+    });
+}
+
+async function loadPostLikes() {
+    const postLikes = document.querySelector('#postLikes');
+    postLikes.innerHTML = "";
+    const response = await axios.get(`http://localhost:3000/likes???????????`);
+    response.data.payload.forEach((post) => {
+        let listItem = document.createElement("li");
+        listItem.innerText = `User ID: ${post.poster_id}, Post: ${post.body}`;
+        postLikes.appendChild(listItem);
     });
 }
 

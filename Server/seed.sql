@@ -21,7 +21,7 @@ CREATE TABLE Likes(
     id SERIAL PRIMARY KEY,
     liker_id INT REFERENCES Users (id),
     post_id INT REFERENCES Posts (id)
-)
+);
 
 -- Add some users
 INSERT INTO users(firstname, lastname, age)
@@ -44,6 +44,18 @@ INSERT INTO posts (poster_id, body)
           (5, 'I like turtles'),
           (5, 'My favorite number is 8');
 
+-- Add some likes
+INSERT INTO Likes(liker_id, post_id)
+    VALUES(1, 2),
+          (2, 1),
+          (2, 5),
+          (2, 7),
+          (3, 7),
+          (4, 6),
+          (5, 8),
+          (5, 9);
+
 -- Let's verify that the users and posts were inserted 
 SELECT * FROM users;
 SELECT * FROM posts;
+SELECT * FROM likes;
