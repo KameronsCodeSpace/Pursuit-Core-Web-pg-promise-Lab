@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadUsers();
     loadPosts();
-    // loadPostLikes();
+    loadPostLikes();
 
     const userForm = document.querySelector('#addUserForm');
     const postForm = document.querySelector('#addPostForm');
@@ -40,10 +40,10 @@ async function loadPosts() {
 async function loadPostLikes() {
     const postLikes = document.querySelector('#postLikes');
     postLikes.innerHTML = "";
-    const response = await axios.get(`http://localhost:3000/likes???????????`);
+    const response = await axios.get(`http://localhost:3000/likes`);
     response.data.payload.forEach((post) => {
         let listItem = document.createElement("li");
-        listItem.innerText = `User ID: ${post.poster_id}, Post: ${post.body}`;
+        listItem.innerText = `Likes: ${post.times_liked} -- Post: ${post.user_post} `;
         postLikes.appendChild(listItem);
     });
 }
